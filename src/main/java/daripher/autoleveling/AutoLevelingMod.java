@@ -39,5 +39,21 @@ public class AutoLevelingMod {
               event.add(entityType, AutoLevelingAttributes.PROJECTILE_DAMAGE_MULTIPLIER.get());
               event.add(entityType, AutoLevelingAttributes.EXPLOSION_DAMAGE_MULTIPLIER.get());
             });
-  }
+    @SubscribeEvent
+	public void onBlocksRegistry(EntityJoinWorldEvent event)
+	public void onEntityJoinWorld(EntityJoinWorldEvent event)
+	{
+		if (event.getEntity() instanceof LivingEntity)
+		{
+@@ -64,6 +64,11 @@
+		if (attributeInstance != null && attributeInstance.getModifier(modifierId) == null)
+		{
+			attributeInstance.addPermanentModifier(new AttributeModifier(modifierId, "Auto Leveling Bonus", bonus, Operation.MULTIPLY_TOTAL));
+			
+			if (attribute == Attributes.MAX_HEALTH)
+			{
+				entity.heal(entity.getMaxHealth());
+			}
+		}
+	}
 }
